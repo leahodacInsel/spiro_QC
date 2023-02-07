@@ -21,7 +21,6 @@ if __name__ == '__main__':
     # path = 'L:\KKM_LuFu\OfficeData\Biomedical Engineers\Lea\project QC\spirometry_qualityControl\SentrySuite\...
     # XMLExport_Overview\ExamplePlots'
     # nameFile = 'Export3-Trials.xml'
-    
 
     
     # path = "C:/Users/I0337516/Desktop/"
