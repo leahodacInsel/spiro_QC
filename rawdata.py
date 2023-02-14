@@ -19,8 +19,14 @@ def get_raw_vectors(path, nameFile):
     # Read XML
     tree = ET.parse(xmlFile)
     root = tree.getroot()
-    trials = root.findall("VisitTrees/VisitTree/Levels/LevelTree/Measurements/Measurement/Trials/Trial")
-    for trial in trials:
+
+    # Pre trials only : pre Ventolin administration
+    levelTrees = root.findall('VisitTrees/VisitTree/Levels/LevelTree/Level[@Type="Pre"]...')
+    for levelTree in levelTrees: measurements = levelTree.findall("./Measurements/Measurement[@MeasurementType='Spirometry']")
+
+    for measurement in measurements: trials = measurement.findall("./Trials/Trial")
+
+    for trial in trials :
         number = int(trial.get('Number'))
         curves = trial.findall("./RawCurveData/Curves/Curve")
 
@@ -75,9 +81,9 @@ def plot_raw_curves(vol_VT, time_VT, flow_FV, vol_FV, nameFile):
 
     for resp in range(len(time_VT)):
         axs[0, resp].plot(time_VT[resp], vol_VT[resp], "k")
-        axs[0, resp].set_title(f'Vol-Time (Resp #{resp})')
+        axs[0, resp].set_title(f'V-T (#{resp})')
         axs[1, resp].plot(vol_FV[resp], flow_FV[resp], "r")
-        axs[1, resp].set_title(f'Flow-Volume (Resp #{resp})')
+        axs[1, resp].set_title(f'F-V (#{resp})')
 
     fig.suptitle(('Example File SentrySuite: ' + nameFile))
     plt.show()
