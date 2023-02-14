@@ -6,7 +6,7 @@ if __name__ == '__main__':
     # Data path and name
     path = r"L:\KKM_LuFu\OfficeData\01. Documentation\SpiroQC"
     nameFile = '0012523879_ test julia.xml'
-
+#t
     # build vectors Volume-Time and Flow-Volume
     [vol_VT, time_VT, flow_FV, vol_FV, nameFile] = get_raw_vectors(path, nameFile)
 
